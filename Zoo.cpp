@@ -108,3 +108,19 @@ void Zoo::AddAnimal(Animal *an) {
     tmpArr=nullptr;
     m_numOfAnimals++;
 }
+
+Zoo &Zoo::operator+(Animal *an) {
+    AddAnimal(an); // add animal to the animals arr (deep copy)
+    return *this;
+}
+
+Zoo Zoo::operator+(const Zoo &other) const {
+    Zoo newZ(other.GetName(), other.GetAddress(), other.GetTicketPrice(), other.GetOpenHour(), other.GetCloseHour());
+    newZ.m_numOfAnimals = 0;
+    //Copy m_animals -> deep copy
+    for (int i = 0; i < m_numOfAnimals; ++i) {
+        newZ.AddAnimal(m_animals[i]);
+    }
+    newZ.m_numOfAnimals = other.GetNumOfAnimals();
+    return Zoo();
+}
