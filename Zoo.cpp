@@ -1,4 +1,8 @@
 #include "Zoo.h"
+#include "Horse.h"
+#include "Flamingo.h"
+#include "GoldFish.h"
+#include "Mermaid.h"
 
 Zoo::Zoo() : m_name(nullptr), m_address(nullptr), m_ticketPrice(0), m_animals(nullptr), m_closeHours(nullptr),
              m_numOfAnimals(0), m_openHours(
@@ -42,14 +46,14 @@ Zoo::Zoo(ifstream &in_file) {
 }
 
 Zoo::~Zoo() {
-    delete [] m_name;
-    delete [] m_address;
-    delete [] m_openHours;
-    delete [] m_closeHours;
+    delete[] m_name;
+    delete[] m_address;
+    delete[] m_openHours;
+    delete[] m_closeHours;
     for (int i = 0; i < m_numOfAnimals; ++i) {
         delete m_animals[i];
     }
-    delete [] m_animals;
+    delete[] m_animals;
 }
 
 const char *Zoo::GetName() const {
@@ -78,4 +82,29 @@ int Zoo::GetNumOfAnimals() const {
 
 Animal **Zoo::GetAnimals() const {
     return m_animals;
+}
+
+void Zoo::AddAnimal(Animal *an) {
+    Animal **tmpArr = new Animal *[m_numOfAnimals + 1];
+    for (int i = 0; i < m_numOfAnimals; ++i) {
+        tmpArr[i] = m_animals[i];
+    }
+
+    if (typeid(*an) == typeid(Horse)) {
+        Horse* h = dynamic_cast<Horse*>(an);
+        tmpArr[m_numOfAnimals] = new Horse(*h);
+    }else if (typeid(*an) == typeid(Flamingo)) {
+        Flamingo* f = dynamic_cast<Flamingo*>(an);
+        tmpArr[m_numOfAnimals] = new Flamingo(*f);
+    } else if(typeid(*an) == typeid(GoldFish)) {
+        GoldFish* gf = dynamic_cast<GoldFish*>(an);
+        tmpArr[m_numOfAnimals] = new GoldFish(*gf);
+    } else if(typeid(*an) == typeid(Mermaid)) {
+        Mermaid* m = dynamic_cast<Mermaid*>(an);
+        tmpArr[m_numOfAnimals] = new Mermaid(*m);
+    }
+
+    m_animals = tmpArr;
+    tmpArr=nullptr;
+    m_numOfAnimals++;
 }
