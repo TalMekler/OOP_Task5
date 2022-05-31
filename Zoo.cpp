@@ -91,21 +91,21 @@ void Zoo::AddAnimal(Animal *an) {
     }
 
     if (typeid(*an) == typeid(Horse)) {
-        Horse* h = dynamic_cast<Horse*>(an);
+        Horse *h = dynamic_cast<Horse *>(an);
         tmpArr[m_numOfAnimals] = new Horse(*h);
-    }else if (typeid(*an) == typeid(Flamingo)) {
-        Flamingo* f = dynamic_cast<Flamingo*>(an);
+    } else if (typeid(*an) == typeid(Flamingo)) {
+        Flamingo *f = dynamic_cast<Flamingo *>(an);
         tmpArr[m_numOfAnimals] = new Flamingo(*f);
-    } else if(typeid(*an) == typeid(GoldFish)) {
-        GoldFish* gf = dynamic_cast<GoldFish*>(an);
+    } else if (typeid(*an) == typeid(GoldFish)) {
+        GoldFish *gf = dynamic_cast<GoldFish *>(an);
         tmpArr[m_numOfAnimals] = new GoldFish(*gf);
-    } else if(typeid(*an) == typeid(Mermaid)) {
-        Mermaid* m = dynamic_cast<Mermaid*>(an);
+    } else if (typeid(*an) == typeid(Mermaid)) {
+        Mermaid *m = dynamic_cast<Mermaid *>(an);
         tmpArr[m_numOfAnimals] = new Mermaid(*m);
     }
 
     m_animals = tmpArr;
-    tmpArr=nullptr;
+    tmpArr = nullptr;
     m_numOfAnimals++;
 }
 
@@ -123,4 +123,32 @@ Zoo Zoo::operator+(const Zoo &other) const {
     }
     newZ.m_numOfAnimals = other.GetNumOfAnimals();
     return Zoo();
+}
+
+void Zoo::Save(ofstream &ofs) const {
+    ofs << m_name << " " << m_address << " " << m_ticketPrice << " " << m_openHours << " " << m_closeHours << " "
+        << m_numOfAnimals << " " << m_animals << " ";
+}
+
+void Zoo::Load(ifstream &ifs) {
+    char buff[200];
+    ifs >> buff;
+    m_name = strdup((buff));
+    ifs>>buff;
+    m_address = strdup((buff));
+    ifs>>m_ticketPrice;
+    ifs>>buff;
+    m_openHours = strdup(buff);
+    ifs>>buff;
+    m_closeHours = strdup(buff);
+    ifs>>m_numOfAnimals;
+    m_animals = new Animal*[m_numOfAnimals];
+    for (int i = 0; i < m_numOfAnimals; ++i) {
+        /* Read each animal */
+    }
+
+}
+
+void Zoo::SaveBin(ofstream &ofs) const {
+
 }
