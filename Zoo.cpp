@@ -51,3 +51,31 @@ Zoo::~Zoo() {
     }
     delete [] m_animals;
 }
+
+const char *Zoo::GetName() const {
+    return m_name;
+}
+
+const char *Zoo::GetAddress() const {
+    return m_address;
+}
+
+float Zoo::GetTicketPrice() const {
+    return m_ticketPrice;
+}
+
+const char *Zoo::GetOpenHour() const {
+    return m_openHours;
+}
+
+const char *Zoo::GetCloseHour() const {
+    return m_closeHours;
+}
+
+int Zoo::GetNumOfAnimals() const {
+    return m_numOfAnimals;
+}
+
+Animal **Zoo::GetAnimals() const {
+    return m_animals;
+}
