@@ -1,11 +1,12 @@
 #include "Birds.h"
 
-Birds::Birds():Animal() {};
+Birds::Birds() : Animal(), m_incubationTime(0) {};
 
-Birds::Birds(const char *color, int childs, float avgLifetime, float incubation):Animal(color, childs, avgLifetime), m_incubationTime(incubation) {};
+Birds::Birds(const char *color, int childs, float avgLifetime, float incubation) : Animal(color, childs, avgLifetime),
+                                                                                   m_incubationTime(incubation) {};
 
 Birds::Birds(ifstream &in_file) : Animal(in_file) {
-
+    Birds::loadAdditionBin(in_file);
 }
 
 Birds::~Birds() {
@@ -37,11 +38,11 @@ void Birds::LoadBin(ifstream &in_file) {
 }
 
 void Birds::saveAddition(ofstream &out_file) const {
-    out_file<<m_incubationTime<<endl;
+    out_file << m_incubationTime << endl;
 }
 
 void Birds::saveAdditionBin(ofstream &out_file) const {
-    out_file.write((char*)&m_incubationTime, sizeof(m_incubationTime));
+    out_file.write((char *) &m_incubationTime, sizeof(m_incubationTime));
 }
 
 void Birds::loadAddition(ifstream &in_file) {
@@ -49,5 +50,5 @@ void Birds::loadAddition(ifstream &in_file) {
 }
 
 void Birds::loadAdditionBin(ifstream &in_file) {
-    in_file.read((char*)&m_incubationTime, sizeof(m_incubationTime));
+    in_file.read((char *) &m_incubationTime, sizeof(m_incubationTime));
 }
