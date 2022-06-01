@@ -15,19 +15,12 @@ public:
     float GetHeight() const;//return the avg height of the flamingo
 
     virtual void Save(ofstream &out_file) const;
-
     virtual void Load(ifstream &in_file);
-
     virtual void SaveBin(ofstream &out_file) const;
-
     virtual void LoadBin(ifstream &in_file);
-
     virtual void saveAddition(ofstream &out_file) const;
-
     virtual void saveAdditionBin(ofstream &out_file) const;
-
     virtual void loadAddition(ifstream &in_file);
-
     virtual void loadAdditionBin(ifstream &in_file);
 
 protected:
