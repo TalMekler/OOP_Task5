@@ -1,19 +1,19 @@
 #include "Animal.h"
 
-Animal::Animal() {
-    m_color = strdup("GRAY");
+Animal::Animal() : m_color(nullptr) {
+    setColor("GRAY");
     m_childCount = 0;
     m_avgLifetime = 0;
 }
 
-Animal::Animal(const char *color, int childs, float avgLifetime) {
+Animal::Animal(const char *color, int childs, float avgLifetime) : m_color(nullptr) {
     setColor(color);
     m_childCount = childs;
     m_avgLifetime = avgLifetime;
 }
 
-Animal::Animal(ifstream &in_file) : m_color(nullptr) {
-    LoadBin(in_file);
+Animal::Animal(ifstream &in_file) : m_color(nullptr), m_avgLifetime(0), m_childCount(0) {
+    Animal::LoadBin(in_file);
 }
 
 Animal::~Animal() {
