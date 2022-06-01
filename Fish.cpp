@@ -43,19 +43,20 @@ void Fish::LoadBin(ifstream &in_file) {
 }
 
 void Fish::saveAddition(ofstream &out_file) const {
-    out_file<<m_finCount<<" "<<m_gillsCount<<endl;
+    out_file << m_finCount << " " << m_gillsCount << endl;
 }
 
 void Fish::saveAdditionBin(ofstream &out_file) const {
-    out_file.write((char*)&m_finCount, sizeof(m_finCount));
-    out_file.write((char*)&m_gillsCount, sizeof(m_gillsCount));
+    out_file.write((char *) &m_finCount, sizeof(m_finCount));
+    out_file.write((char *) &m_gillsCount, sizeof(m_gillsCount));
 }
 
 void Fish::loadAddition(ifstream &in_file) {
-    in_file >> m_finCount >> m_gillsCount;
+    in_file >> m_finCount;
+    in_file >> m_gillsCount;
 }
 
 void Fish::loadAdditionBin(ifstream &in_file) {
-    in_file.read((char*)&m_finCount, sizeof(m_finCount));
-    in_file.read((char*)&m_gillsCount, sizeof(m_gillsCount));
+    in_file.read((char *) &m_finCount, sizeof(m_finCount));
+    in_file.read((char *) &m_gillsCount, sizeof(m_gillsCount));
 }
