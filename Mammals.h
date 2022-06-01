@@ -3,7 +3,7 @@
 
 #include "Animal.h"
 
-class Mammals : public Animal
+class Mammals : virtual public Animal
 {
 public:
 	Mammals();//set the default color to GRAY and other params to 0
