@@ -24,22 +24,22 @@ int Fish::GetGillsCount() const {
 
 void Fish::Save(ofstream &out_file) const {
     Animal::Save(out_file);
-    saveAddition(out_file);
+    Fish::saveAddition(out_file);
 }
 
 void Fish::Load(ifstream &in_file) {
     Animal::Load(in_file);
-    loadAddition(in_file);
+    Fish::loadAddition(in_file);
 }
 
 void Fish::SaveBin(ofstream &out_file) const {
     Animal::SaveBin(out_file);
-    saveAdditionBin(out_file);
+    Fish::saveAdditionBin(out_file);
 }
 
 void Fish::LoadBin(ifstream &in_file) {
     Animal::LoadBin(in_file);
-    loadAdditionBin(in_file);
+    Fish::loadAdditionBin(in_file);
 }
 
 void Fish::saveAddition(ofstream &out_file) const {

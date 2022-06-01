@@ -23,22 +23,22 @@ float Flamingo::GetHeight() const {
 
 void Flamingo::Save(ofstream &out_file) const {
     Birds::Save(out_file);
-    saveAddition(out_file);
+    Flamingo::saveAddition(out_file);
 }
 
 void Flamingo::Load(ifstream &in_file) {
     Birds::Load(in_file);
-    loadAddition(in_file);
+    Flamingo::loadAddition(in_file);
 }
 
 void Flamingo::SaveBin(ofstream &out_file) const {
     Birds::SaveBin(out_file);
-    saveAdditionBin(out_file);
+    Flamingo::saveAdditionBin(out_file);
 }
 
 void Flamingo::LoadBin(ifstream &in_file) {
     Birds::LoadBin(in_file);
-    loadAdditionBin(in_file);
+    Flamingo::loadAdditionBin(in_file);
 }
 
 void Flamingo::saveAddition(ofstream &out_file) const {
