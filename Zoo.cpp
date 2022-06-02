@@ -160,48 +160,120 @@ void Zoo::Load(ifstream &ifs) {
 }
 
 void Zoo::SaveBin(ofstream &ofs) const {
-    /// save name
+    // save name : char*
     int len = strlen(m_name);
-    ofs.write((char*)&len, sizeof(len));
+    ofs.write((char *) &len, sizeof(len));
     ofs.write(m_name, len);
-    /// TODO: save all data members
+    // save address : char*
+    len = strlen(m_address);
+    ofs.write((char *) &len, len);
+    ofs.write(m_address, len);
+    // save ticketPrice
+    ofs.write((char *) &m_ticketPrice, sizeof(m_ticketPrice));
+    // save open hours : char*
+    len = strlen(m_openHours);
+    ofs.write((char *) &len, len);
+    ofs.write(m_openHours, len);
+    // save close hours : char*
+    len = strlen(m_closeHours);
+    ofs.write((char *) &len, len);
+    ofs.write(m_closeHours, len);
+    // save num of animals : int
+    ofs.write((char *) &m_numOfAnimals, sizeof(m_numOfAnimals));
+    // save each animal
+    for (int i = 0; i < m_numOfAnimals; ++i) {
+        m_animals[i]->SaveBin(ofs);
+    }
 }
 
 void Zoo::LoadBin(ifstream &ifs) {
+    int len;
+    char buffer[200];
+    // load name : char*
+    ifs.read((char *) &len, sizeof(len));
+    ifs.read(buffer, len);
+    m_name = strdup(buffer);
+    // load address : char*
+    ifs.read((char *) &len, sizeof(len));
+    ifs.read(buffer, len);
+    m_address = strdup(buffer);
+    // load ticket price : float
+    ifs.read((char*)&m_ticketPrice, sizeof(m_ticketPrice));
+    // load open hours : char*
+    ifs.read((char *) &len, sizeof(len));
+    ifs.read(buffer, len);
+    m_openHours = strdup(buffer);
+    // load close hours : char*
+    ifs.read((char *) &len, sizeof(len));
+    ifs.read(buffer, len);
+    m_closeHours = strdup(buffer);
+    // load num of animals : int
+    ifs.read((char*)&m_numOfAnimals, sizeof(m_numOfAnimals));
+    // load each animal
+    m_animals = new Animal*[m_numOfAnimals];
+    for (int i = 0; i < m_numOfAnimals; ++i) {
+        m_animals[i] = makeObjectBin(ifs);
+    }
 
 }
 
-char* Zoo::loadTypeTxt(ifstream &ifs) {
-    char* type = new char[3];
+char *Zoo::loadTypeTxt(ifstream &ifs) {
+    char *type = new char[3];
     ifs.read(type, 2);
     return type;
 }
 
-Animal *Zoo::makeObject(ifstream& ifs) {
-    char* type;
+Animal *Zoo::makeObject(ifstream &ifs) {
+    char *type;
     type = loadTypeTxt(ifs);
 
-    if(strcmp(type, "Ho")) {
-        Horse* h = new Horse();
+    if (strcmp(type, "Ho")) {
+        Horse *h = new Horse();
         h->Load(ifs);
         delete[] type;
         return h;
     }
-    if(strcmp(type, "Me")) {
-        Mermaid* m = new Mermaid();
+    if (strcmp(type, "Me")) {
+        Mermaid *m = new Mermaid();
         m->Load(ifs);
         delete[] type;
         return m;
     }
-    if(strcmp(type, "Go")) {
-        GoldFish* g = new GoldFish();
+    if (strcmp(type, "Go")) {
+        GoldFish *g = new GoldFish();
         g->Load(ifs);
         delete[] type;
         return g;
     }
-    if(strcmp(type, "Fl")) {
-        Flamingo* f = new Flamingo();
+    if (strcmp(type, "Fl")) {
+        Flamingo *f = new Flamingo();
         f->Load(ifs);
+        delete[] type;
+        return f;
+    }
+}
+
+Animal *Zoo::makeObjectBin(ifstream &ifs) {
+    char *type;
+    type = loadTypeTxt(ifs);
+
+    if (strcmp(type, "Ho")) {
+        Horse *h = new Horse(ifs);
+        delete[] type;
+        return h;
+    }
+    if (strcmp(type, "Me")) {
+        Mermaid *m = new Mermaid(ifs);
+        delete[] type;
+        return m;
+    }
+    if (strcmp(type, "Go")) {
+        GoldFish *g = new GoldFish(ifs);
+        delete[] type;
+        return g;
+    }
+    if (strcmp(type, "Fl")) {
+        Flamingo *f = new Flamingo(ifs);
         delete[] type;
         return f;
     }
