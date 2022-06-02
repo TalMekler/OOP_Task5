@@ -2,6 +2,10 @@
 #define ZOO_H
 
 #include "Animal.h"
+#include "Horse.h"
+#include "Flamingo.h"
+#include "GoldFish.h"
+#include "Mermaid.h"
 
 class Zoo
 {
@@ -26,6 +30,7 @@ public:
 public:
 	Zoo& operator+( Animal* an );//adds an animal (only pointer, no copy needed) to the class and returns this with the change
 	Zoo operator+( const Zoo& other ) const; //returns a new Zoo with the properties of this and animals of this and other (need to deep copy the data of other)
+    Zoo& operator+=( Animal* an);
 
 public:
 	friend ofstream& operator<<( ofstream& out, const Zoo& z );//operator to write the zoo to a text file
@@ -50,7 +55,8 @@ private:
 	int			m_numOfAnimals;
 	Animal**	m_animals;
 };
-
+ofstream& operator<<( ofstream& out, const Zoo& z );
+ifstream& operator >> ( ifstream& in, Zoo& z );
 ofstream& operator<<( ofstream& out, const Zoo& z ) {
     z.Save(out);
     return out;

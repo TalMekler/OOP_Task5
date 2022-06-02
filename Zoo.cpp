@@ -1,8 +1,4 @@
 #include "Zoo.h"
-#include "Horse.h"
-#include "Flamingo.h"
-#include "GoldFish.h"
-#include "Mermaid.h"
 
 Zoo::Zoo() : m_name(nullptr), m_address(nullptr), m_ticketPrice(0), m_animals(nullptr), m_closeHours(nullptr),
              m_numOfAnimals(0), m_openHours(
@@ -198,7 +194,7 @@ void Zoo::LoadBin(ifstream &ifs) {
     ifs.read(buffer, len);
     m_address = strdup(buffer);
     // load ticket price : float
-    ifs.read((char*)&m_ticketPrice, sizeof(m_ticketPrice));
+    ifs.read((char *) &m_ticketPrice, sizeof(m_ticketPrice));
     // load open hours : char*
     ifs.read((char *) &len, sizeof(len));
     ifs.read(buffer, len);
@@ -208,9 +204,9 @@ void Zoo::LoadBin(ifstream &ifs) {
     ifs.read(buffer, len);
     m_closeHours = strdup(buffer);
     // load num of animals : int
-    ifs.read((char*)&m_numOfAnimals, sizeof(m_numOfAnimals));
+    ifs.read((char *) &m_numOfAnimals, sizeof(m_numOfAnimals));
     // load each animal
-    m_animals = new Animal*[m_numOfAnimals];
+    m_animals = new Animal *[m_numOfAnimals];
     for (int i = 0; i < m_numOfAnimals; ++i) {
         m_animals[i] = makeObjectBin(ifs);
     }
@@ -245,12 +241,12 @@ Animal *Zoo::makeObject(ifstream &ifs) {
         delete[] type;
         return g;
     }
-    if (strcmp(type, "Fl")) {
-        Flamingo *f = new Flamingo();
-        f->Load(ifs);
-        delete[] type;
-        return f;
-    }
+
+    Flamingo *f = new Flamingo();
+    f->Load(ifs);
+    delete[] type;
+    return f;
+
 }
 
 Animal *Zoo::makeObjectBin(ifstream &ifs) {
@@ -272,10 +268,32 @@ Animal *Zoo::makeObjectBin(ifstream &ifs) {
         delete[] type;
         return g;
     }
-    if (strcmp(type, "Fl")) {
-        Flamingo *f = new Flamingo(ifs);
-        delete[] type;
-        return f;
-    }
+    Flamingo *f = new Flamingo(ifs);
+    delete[] type;
+    return f;
+
 }
 
+Zoo &Zoo::operator+=(Animal *an) {
+    Animal **tmp = new Animal *[m_numOfAnimals + 1];
+    for (int i = 0; i < m_numOfAnimals; ++i) {
+        tmp[i] = m_animals[i];
+    }
+    if (typeid(*an) == typeid(Horse)) {
+        Horse *h = dynamic_cast<Horse *>(an);
+        tmp[m_numOfAnimals] = new Horse(*h);
+    } else if (typeid(*an) == typeid(Mermaid)) {
+        Mermaid *m = dynamic_cast<Mermaid *>(an);
+        tmp[m_numOfAnimals] = new Mermaid(*m);
+    } else if (typeid(*an) == typeid(GoldFish)) {
+        GoldFish *gl = dynamic_cast<GoldFish *>(an);
+        tmp[m_numOfAnimals] = new GoldFish(*gl);
+    } else if (typeid(*an) == typeid(Flamingo)) {
+        Flamingo *fl = dynamic_cast<Flamingo *>(an);
+        tmp[m_numOfAnimals] = new Flamingo(*fl);
+    }
+
+    m_animals = tmp;
+    tmp = nullptr;
+    return *this;
+}
