@@ -278,3 +278,4 @@ Animal *Zoo::makeObjectBin(ifstream &ifs) {
         return f;
     }
 }
+

@@ -51,7 +51,13 @@ private:
 	Animal**	m_animals;
 };
 
-ofstream& operator<<( ofstream& out, const Zoo& z );
-ifstream& operator >> ( ifstream& in, Zoo& z );
+ofstream& operator<<( ofstream& out, const Zoo& z ) {
+    z.Save(out);
+    return out;
+}
+ifstream& operator >> ( ifstream& in, Zoo& z ) {
+    z.Load(in);
+    return in;
+}
 
 #endif // ifndef
