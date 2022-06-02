@@ -10,40 +10,47 @@
 
 using namespace std;
 
-class Animal
-{
+class Animal {
 protected:
-	Animal();//set the default color to GRAY and other params to 0
-	Animal( const char* color, int childs, float avgLifetime );//init the Animal with a given attributes
+    Animal();//set the default color to GRAY and other params to 0
+    Animal(const char *color, int childs, float avgLifetime);//init the Animal with a given attributes
 //    Animal(Animal& a); // copy CTOR
-	Animal( ifstream& in_file );//init the Animal from a binary file
+    Animal(ifstream &in_file);//init the Animal from a binary file
 
 public:
-	virtual ~Animal();
+    virtual ~Animal();
 
 public:
-	const char* GetColor() const;//return the color of the animal
-	int			GetChildCount() const;//return the child count of the animal
-	float		GetLifetime() const;//return the life time of the animal
-    void setColor(const char* color);
+    const char *GetColor() const;//return the color of the animal
+    int GetChildCount() const;//return the child count of the animal
+    float GetLifetime() const;//return the life time of the animal
+    void setColor(const char *color);
 
-    virtual void Save(ofstream& out_file) const;
-    virtual void Load(ifstream& in_file);
-    virtual void SaveBin(ofstream& out_file) const;
-    virtual void LoadBin(ifstream& in_file);
+    virtual void Save(ofstream &out_file) const;
 
-    virtual void saveAddition(ofstream& out_file)const = 0;
-    virtual void saveAdditionBin(ofstream& out_file)const = 0;
-    virtual void loadAddition(ifstream& in_file) = 0;
-    virtual void loadAdditionBin(ifstream& in_file) = 0;
+    virtual void Load(ifstream &in_file);
 
-    void saveType(ofstream& out_file)const;
-//    void loadType(ifstream& in_file);
+    virtual void SaveBin(ofstream &out_file) const;
+
+    virtual void LoadBin(ifstream &in_file);
+
+    virtual void saveAddition(ofstream &out_file) const = 0;
+
+    virtual void saveAdditionBin(ofstream &out_file) const = 0;
+
+    virtual void loadAddition(ifstream &in_file) = 0;
+
+    virtual void loadAdditionBin(ifstream &in_file) = 0;
+
+    void saveType(ofstream &out_file) const;
+
+    // OPERATORS
+    Animal &operator=(Animal &animal);
 
 protected:
-	char*	m_color;
-	int		m_childCount;
-	float 	m_avgLifetime;
+    char *m_color;
+    int m_childCount;
+    float m_avgLifetime;
 };
 
 #endif // ifndef

@@ -75,3 +75,15 @@ void Animal::LoadBin(ifstream &in_file) {
 void Animal::saveType(ofstream &out_file)const {
     out_file.write((char *) typeid(*this).name() + 1, 2);
 }
+
+Animal& Animal::operator=(Animal &animal) {
+    if (this == &animal)
+        return *this;
+
+    setColor(animal.GetColor());
+    m_childCount = animal.m_childCount;
+    m_avgLifetime = animal.m_avgLifetime;
+
+    return *this;
+}
+

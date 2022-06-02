@@ -6,24 +6,24 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(assignment
-        Animal.cpp
-        Animal.h
-        Birds.cpp
-        Birds.h
-        Fish.cpp
-        Fish.h
-        Flamingo.cpp
-        Flamingo.h
-        GoldFish.cpp
-        GoldFish.h
+        Zoo.h
+        Zoo.cpp
+        Mermaid.h
+        Mammals.cpp
+        MammalsFish.cpp
         Horse.cpp
         Horse.h
-        MainTrain.cpp
-        Mammals.cpp
-        Mammals.h
-        MammalsFish.cpp
+        Fish.h
+        GoldFish.cpp
         MammalsFish.h
+        Mammals.h
+        GoldFish.h
         Mermaid.cpp
-        Mermaid.h
-        Zoo.cpp
-        Zoo.h)
+        Fish.cpp
+        Flamingo.cpp
+        MainTrain.cpp
+        Flamingo.h
+        Birds.h
+        Birds.cpp
+        Animal.cpp
+        Animal.h)

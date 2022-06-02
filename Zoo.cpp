@@ -81,28 +81,7 @@ Animal **Zoo::GetAnimals() const {
 }
 
 void Zoo::AddAnimal(Animal *an) {
-    Animal **tmpArr = new Animal *[m_numOfAnimals + 1];
-    for (int i = 0; i < m_numOfAnimals; ++i) {
-        tmpArr[i] = m_animals[i];
-    }
-
-    if (typeid(*an) == typeid(Horse)) {
-        Horse *h = dynamic_cast<Horse *>(an);
-        tmpArr[m_numOfAnimals] = new Horse(*h);
-    } else if (typeid(*an) == typeid(Flamingo)) {
-        Flamingo *f = dynamic_cast<Flamingo *>(an);
-        tmpArr[m_numOfAnimals] = new Flamingo(*f);
-    } else if (typeid(*an) == typeid(GoldFish)) {
-        GoldFish *gf = dynamic_cast<GoldFish *>(an);
-        tmpArr[m_numOfAnimals] = new GoldFish(*gf);
-    } else if (typeid(*an) == typeid(Mermaid)) {
-        Mermaid *m = dynamic_cast<Mermaid *>(an);
-        tmpArr[m_numOfAnimals] = new Mermaid(*m);
-    }
-
-    m_animals = tmpArr;
-    tmpArr = nullptr;
-    m_numOfAnimals++;
+    *this += an;
 }
 
 Zoo &Zoo::operator+(Animal *an) {
@@ -297,3 +276,4 @@ Zoo &Zoo::operator+=(Animal *an) {
     tmp = nullptr;
     return *this;
 }
+

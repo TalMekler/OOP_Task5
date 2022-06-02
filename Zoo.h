@@ -55,8 +55,7 @@ private:
 	int			m_numOfAnimals;
 	Animal**	m_animals;
 };
-ofstream& operator<<( ofstream& out, const Zoo& z );
-ifstream& operator >> ( ifstream& in, Zoo& z );
+
 ofstream& operator<<( ofstream& out, const Zoo& z ) {
     z.Save(out);
     return out;
