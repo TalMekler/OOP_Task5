@@ -32,13 +32,17 @@ float Animal::GetLifetime() const {
     return m_avgLifetime;
 }
 
-void Animal::setColor(const char* color) {
+void Animal::setColor(const char *color) {
     delete[] m_color;
     m_color = strdup(color);
 }
 
 void Animal::Save(ofstream &out_file) const {
-    out_file << m_color << " " << m_childCount << " " << m_avgLifetime << endl;
+    saveType(out_file);
+    out_file << endl;
+    out_file << m_color << endl;
+    out_file << m_childCount << endl;
+    out_file << m_avgLifetime << endl;
 }
 
 void Animal::Load(ifstream &in_file) {
@@ -50,20 +54,24 @@ void Animal::Load(ifstream &in_file) {
 }
 
 void Animal::SaveBin(ofstream &out_file) const {
+    saveType(out_file);
     int len = strlen(m_color);
-    out_file.write((char*)&len, sizeof(len));
+    out_file.write((char *) &len, sizeof(len));
     out_file.write(m_color, len);
-    out_file.write((char*)&m_childCount, sizeof(m_childCount));
-    out_file.write((char*)&m_avgLifetime, sizeof(m_avgLifetime));
+    out_file.write((char *) &m_childCount, sizeof(m_childCount));
+    out_file.write((char *) &m_avgLifetime, sizeof(m_avgLifetime));
 }
 
 void Animal::LoadBin(ifstream &in_file) {
     int len;
     char buff[200];
-    in_file.read((char*)&len, sizeof(len));
+    in_file.read((char *) &len, sizeof(len));
     in_file.read(buff, len);
     setColor(buff);
-    in_file.read((char*)&m_childCount, sizeof(m_childCount));
-    in_file.read((char*)&m_avgLifetime, sizeof(m_avgLifetime));
+    in_file.read((char *) &m_childCount, sizeof(m_childCount));
+    in_file.read((char *) &m_avgLifetime, sizeof(m_avgLifetime));
 }
 
+void Animal::saveType(ofstream &out_file)const {
+    out_file.write((char *) typeid(*this).name() + 1, 2);
+}

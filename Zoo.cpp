@@ -126,29 +126,83 @@ Zoo Zoo::operator+(const Zoo &other) const {
 }
 
 void Zoo::Save(ofstream &ofs) const {
-    ofs << m_name << " " << m_address << " " << m_ticketPrice << " " << m_openHours << " " << m_closeHours << " "
-        << m_numOfAnimals << " " << m_animals << " ";
+    ofs << m_name << endl;
+    ofs << m_address << endl;
+    ofs << m_ticketPrice << endl;
+    ofs << m_openHours << endl;
+    ofs << m_closeHours << endl;
+    ofs << m_numOfAnimals << endl;
+    // Save each animal and his type
+    for (int i = 0; i < m_numOfAnimals; ++i) {
+        m_animals[i]->Save(ofs);
+    }
 }
 
 void Zoo::Load(ifstream &ifs) {
     char buff[200];
     ifs >> buff;
     m_name = strdup((buff));
-    ifs>>buff;
+    ifs >> buff;
     m_address = strdup((buff));
-    ifs>>m_ticketPrice;
-    ifs>>buff;
+    ifs >> m_ticketPrice;
+    ifs >> buff;
     m_openHours = strdup(buff);
-    ifs>>buff;
+    ifs >> buff;
     m_closeHours = strdup(buff);
-    ifs>>m_numOfAnimals;
-    m_animals = new Animal*[m_numOfAnimals];
+    ifs >> m_numOfAnimals;
+    char *type;
+    m_animals = new Animal *[m_numOfAnimals];
     for (int i = 0; i < m_numOfAnimals; ++i) {
-        /* Read each animal */
+        /// TODO: load each animal
+        m_animals[i] = makeObject(ifs);
     }
 
 }
 
 void Zoo::SaveBin(ofstream &ofs) const {
+    /// save name
+    int len = strlen(m_name);
+    ofs.write((char*)&len, sizeof(len));
+    ofs.write(m_name, len);
+    /// TODO: save all data members
+}
 
+void Zoo::LoadBin(ifstream &ifs) {
+
+}
+
+char* Zoo::loadTypeTxt(ifstream &ifs) {
+    char* type = new char[3];
+    ifs.read(type, 2);
+    return type;
+}
+
+Animal *Zoo::makeObject(ifstream& ifs) {
+    char* type;
+    type = loadTypeTxt(ifs);
+
+    if(strcmp(type, "Ho")) {
+        Horse* h = new Horse();
+        h->Load(ifs);
+        delete[] type;
+        return h;
+    }
+    if(strcmp(type, "Me")) {
+        Mermaid* m = new Mermaid();
+        m->Load(ifs);
+        delete[] type;
+        return m;
+    }
+    if(strcmp(type, "Go")) {
+        GoldFish* g = new GoldFish();
+        g->Load(ifs);
+        delete[] type;
+        return g;
+    }
+    if(strcmp(type, "Fl")) {
+        Flamingo* f = new Flamingo();
+        f->Load(ifs);
+        delete[] type;
+        return f;
+    }
 }

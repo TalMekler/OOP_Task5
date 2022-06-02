@@ -37,6 +37,9 @@ public:
     virtual void loadAddition(ifstream& in_file) = 0;
     virtual void loadAdditionBin(ifstream& in_file) = 0;
 
+    void saveType(ofstream& out_file)const;
+//    void loadType(ifstream& in_file);
+
 protected:
 	char*	m_color;
 	int		m_childCount;
