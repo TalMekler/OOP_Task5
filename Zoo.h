@@ -65,4 +65,4 @@ ifstream& operator >> ( ifstream& in, Zoo& z ) {
     return in;
 }
 
-#endif // ifndef
+#endif // ifndef ZOO_H

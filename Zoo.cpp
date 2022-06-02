@@ -15,30 +15,32 @@ Zoo::Zoo(const char *name, const char *address, float ticket, const char *open, 
 }
 
 Zoo::Zoo(ifstream &in_file) {
-    int len;
-    // m_name
-    in_file.read((char *) &len, sizeof(len));
-    m_name = new char[len + 1];
-    in_file.read(m_name, len);
-    // m_address
-    in_file.read((char *) &len, sizeof(len));
-    m_address = new char[len + 1];
-    in_file.read(m_address, len);
-    // m_ticketPrice
-    in_file.read((char *) &m_ticketPrice, sizeof(m_ticketPrice));
-    // m_openHours
-    in_file.read((char *) &len, sizeof(len));
-    m_openHours = new char[len + 1];
-    in_file.read(m_openHours, len);
-    // m_closeHours
-    in_file.read((char *) &len, sizeof(len));
-    m_closeHours = new char[len + 1];
-    in_file.read(m_closeHours, len);
-    // m_numOfAnimals
-    in_file.read((char *) &m_numOfAnimals, sizeof(m_numOfAnimals));
-    // m_animals
-    in_file.read((char *) &len, sizeof(len));
-    m_animals = new Animal *[len];
+    Zoo::LoadBin(in_file);
+
+//    int len;
+//    // m_name
+//    in_file.read((char *) &len, sizeof(len));
+//    m_name = new char[len + 1];
+//    in_file.read(m_name, len);
+//    // m_address
+//    in_file.read((char *) &len, sizeof(len));
+//    m_address = new char[len + 1];
+//    in_file.read(m_address, len);
+//    // m_ticketPrice
+//    in_file.read((char *) &m_ticketPrice, sizeof(m_ticketPrice));
+//    // m_openHours
+//    in_file.read((char *) &len, sizeof(len));
+//    m_openHours = new char[len + 1];
+//    in_file.read(m_openHours, len);
+//    // m_closeHours
+//    in_file.read((char *) &len, sizeof(len));
+//    m_closeHours = new char[len + 1];
+//    in_file.read(m_closeHours, len);
+//    // m_numOfAnimals
+//    in_file.read((char *) &m_numOfAnimals, sizeof(m_numOfAnimals));
+//    // m_animals
+//    in_file.read((char *) &len, sizeof(len));
+//    m_animals = new Animal *[len];
 }
 
 Zoo::~Zoo() {
@@ -85,7 +87,13 @@ void Zoo::AddAnimal(Animal *an) {
 }
 
 Zoo &Zoo::operator+(Animal *an) {
-    AddAnimal(an); // add animal to the animals arr (deep copy)
+    Animal** tmp = new Animal*[m_numOfAnimals + 1];
+    for (int i = 0; i < m_numOfAnimals; ++i) {
+        tmp[i] = m_animals[i];
+    }
+    tmp[m_numOfAnimals] = an;
+    m_animals = tmp;
+    tmp = nullptr;
     return *this;
 }
 

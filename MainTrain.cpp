@@ -1,8 +1,4 @@
 #include "Zoo.h"
-#include "Mermaid.h"
-#include "GoldFish.h"
-#include "Horse.h"
-#include "Flamingo.h"
 
 //Train
 int main()
