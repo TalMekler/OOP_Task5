@@ -1,0 +1,11 @@
+# ninja log v5
+1	501	1654155481526012784	CMakeFiles/assignment.dir/Birds.cpp.o	383c7a99119c79b5
+1	673	1654155481699563956	CMakeFiles/assignment.dir/Horse.cpp.o	4b8518bbe56e8fb3
+2	697	1654155481722512337	CMakeFiles/assignment.dir/Mammals.cpp.o	a550e4685375a887
+1	703	1654155481730533839	CMakeFiles/assignment.dir/Fish.cpp.o	5dfd0dcfa448672f
+1	707	1654155481734567507	CMakeFiles/assignment.dir/GoldFish.cpp.o	418d0336aa41595b
+3	711	1654155481739192217	CMakeFiles/assignment.dir/Mermaid.cpp.o	b46e1ffe237ddb86
+2	713	1654155481741368551	CMakeFiles/assignment.dir/MammalsFish.cpp.o	1d3a3ad6fa1236c2
+1	717	1654155481745550593	CMakeFiles/assignment.dir/Flamingo.cpp.o	8669200dde1bced1
+0	735	1654155481764604390	CMakeFiles/assignment.dir/Animal.cpp.o	238d110c735acb8d
+2	331	1654155489240512757	CMakeFiles/assignment.dir/Zoo.cpp.o	ad2c7f6119879013

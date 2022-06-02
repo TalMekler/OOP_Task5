@@ -35,7 +35,7 @@ public:
 	void Save( ofstream& ofs ) const;//method to save the info to a text file
 	void Load( ifstream& ifs );//method to load the info from a text file
 	void SaveBin( ofstream& ofs ) const;//method to save the info to a binary file
-    void LoadBin( ifstream& ifs ) const
+    void LoadBin( ifstream& ifs ) const;
 
 private:
 	char*		m_name;
