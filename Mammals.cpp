@@ -41,7 +41,8 @@ void Mammals::LoadBin(ifstream &in_file) {
 }
 
 void Mammals::saveAddition(ofstream &out_file) const {
-    out_file << m_pregnancyTime<<" "<<m_milkLiters<<endl;
+    out_file << m_pregnancyTime<<endl;
+    out_file<<m_milkLiters<<endl;
 }
 
 void Mammals::saveAdditionBin(ofstream &out_file) const {

@@ -91,9 +91,11 @@ void Mermaid::loadAdditionBin(ifstream &in_file) {
     char buff[200];
     in_file.read((char*)&len, sizeof (len));
     in_file.read(buff, len);
+    buff[len] = '\0';
     setFirstName(buff);
     in_file.read((char*)&len, sizeof (len));
     in_file.read(buff, len);
+    buff[len] = '\0';
     setLastName(buff);
 }
 

@@ -6,7 +6,7 @@ GoldFish::GoldFish(const char *color, int childs, float avgLifetime, float preg,
                    float avgW, float avgL) : Animal(color, childs, avgLifetime) ,MammalsFish(color, childs, avgLifetime, preg, milk, fin, gills),
                                              m_avgLength(avgL), m_avgWeight(avgW) {};
 
-GoldFish::GoldFish(ifstream &in_file) : MammalsFish(in_file) {
+GoldFish::GoldFish(ifstream &in_file) : Animal(in_file), MammalsFish(in_file) {
     loadAdditionBin(in_file);
 }
 

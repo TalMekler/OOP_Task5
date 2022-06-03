@@ -13,20 +13,23 @@ Ho
 GRAY
 2
 20
-11 3
+11
+3
 Selle Francais
 Me
 BROWN
 3
 65.5
-9 2
+9
+2
 2 4
 Ariel Princess
 Go
 GOLD
 5
 1
-3 2
+3
+2
 100 3
 0.3
 0.7

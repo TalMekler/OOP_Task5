@@ -21,9 +21,13 @@ void MammalsFish::Load(ifstream &in_file) {
 }
 
 void MammalsFish::SaveBin(ofstream &out_file) const {
-    Fish::SaveBin(out_file);
+    Animal::SaveBin(out_file);
+    Mammals::saveAdditionBin(out_file);
+    Fish::saveAdditionBin(out_file);
 }
 
 void MammalsFish::LoadBin(ifstream &in_file) {
-    Mammals::LoadBin(in_file);
+    Animal::LoadBin(in_file);
+    Mammals::loadAdditionBin(in_file);
+    Fish::loadAdditionBin(in_file);
 }
