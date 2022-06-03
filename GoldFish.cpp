@@ -10,6 +10,12 @@ GoldFish::GoldFish(ifstream &in_file) : MammalsFish(in_file) {
     loadAdditionBin(in_file);
 }
 
+GoldFish::GoldFish(const GoldFish& other) : Animal(other.GetColor(), other.m_childCount, other.m_avgLifetime),
+                                            MammalsFish(other.GetColor(), other.m_childCount, other.m_avgLifetime, other.m_pregnancyTime, other.m_milkLiters, other.m_finCount, other.m_gillsCount),
+                                            m_avgLength(other.m_avgLength), m_avgWeight(other.m_avgWeight){
+
+}
+
 GoldFish::~GoldFish() {
 
 }

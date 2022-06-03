@@ -15,6 +15,13 @@ Mermaid::Mermaid(ifstream &in_file) : MammalsFish(in_file) {
     Mermaid::loadAdditionBin(in_file);
 }
 
+Mermaid::Mermaid(const Mermaid& other) : Animal(other.GetColor(), other.m_childCount, other.m_avgLifetime),
+                                         MammalsFish(other.GetColor(), other.m_childCount, other.m_avgLifetime, other.m_pregnancyTime, other.m_milkLiters, other.m_finCount, other.m_gillsCount),
+                                         m_firstName(nullptr), m_lastName(nullptr){
+    setFirstName(other.GetFirstName());
+    setLastName(other.GetLastName());
+}
+
 Mermaid::~Mermaid() {
     delete[] m_firstName;
     delete[] m_lastName;

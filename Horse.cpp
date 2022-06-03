@@ -2,13 +2,26 @@
 
 Horse::Horse() : Mammals(), m_type(nullptr) {};
 
-Horse::Horse(const char *color, int childs, float avgLifetime, float preg, float milk, const char *type) : Animal(color, childs, avgLifetime) ,Mammals(
-        color, childs, avgLifetime, preg, milk) {
+Horse::Horse(const char *color, int childs, float avgLifetime, float preg, float milk, const char *type) : Animal(color,
+                                                                                                                  childs,
+                                                                                                                  avgLifetime),
+                                                                                                           Mammals(
+                                                                                                                   color,
+                                                                                                                   childs,
+                                                                                                                   avgLifetime,
+                                                                                                                   preg,
+                                                                                                                   milk) {
     m_type = strdup(type);
 }
 
 Horse::Horse(ifstream &in_file) : Mammals(in_file) {
     Horse::loadAdditionBin(in_file);
+}
+
+Horse::Horse(const Horse &other) : Animal(other.GetColor(), other.m_childCount, other.m_avgLifetime),
+                                    Mammals(other.GetColor(), other.m_childCount, other.m_avgLifetime, other.m_pregnancyTime, other.m_milkLiters),
+                                    m_type(nullptr) {
+    setType(other.m_type);
 }
 
 Horse::~Horse() {

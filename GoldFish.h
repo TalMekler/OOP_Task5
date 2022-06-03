@@ -9,6 +9,7 @@ public:
 	GoldFish();//set the default color to GRAY and other params to 0
 	GoldFish( const char* color, int childs, float avgLifetime, float preg, float milk, int fin, int gills, float avgW, float avgL );//init the GoldFish with a given attributes
 	GoldFish( ifstream& in_file );//init the GoldFish from a binary file
+    GoldFish(const GoldFish& other);
 	virtual ~GoldFish();
 
 public:

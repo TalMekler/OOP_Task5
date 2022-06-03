@@ -22,7 +22,7 @@ Zoo::Zoo(const Zoo &z) {
     m_closeHours = strdup(z.GetCloseHour());
     m_numOfAnimals = 0;
     for (int i = 0; i < z.GetNumOfAnimals(); ++i) {
-        AddAnimal(z.m_animals[i]);
+        AddAnimal(z.m_animals[i]); // deep copy
     }
 }
 
@@ -87,11 +87,10 @@ Zoo &Zoo::operator+(Animal *an) {
 
 Zoo Zoo::operator+(const Zoo &other) const {
     Zoo newZ(*this); // Using copy CTOR
-    //Copy m_animals -> deep copy
+
     for (int i = 0; i < other.m_numOfAnimals; ++i) {
-        newZ.AddAnimal(other.m_animals[i]);
+        newZ.AddAnimal(other.m_animals[i]); // Copy other.m_animals -> deep copy
     }
-//    newZ.m_numOfAnimals = other.GetNumOfAnimals();
     return newZ;
 }
 
@@ -101,7 +100,7 @@ void Zoo::Save(ofstream &ofs) const {
     ofs << m_ticketPrice << endl;
     ofs << m_openHours << endl;
     ofs << m_closeHours << endl;
-    ofs << m_numOfAnimals; ///TODO: changed here
+    ofs << m_numOfAnimals;
     // Save each animal and his type
     for (int i = 0; i < m_numOfAnimals; ++i) {
         m_animals[i]->Save(ofs);
@@ -125,7 +124,6 @@ void Zoo::Load(ifstream &ifs) {
     char *type;
     m_animals = new Animal *[m_numOfAnimals];
     for (int i = 0; i < m_numOfAnimals; ++i) {
-        /// TODO: load each animal
         m_animals[i] = makeObject(ifs);
     }
 

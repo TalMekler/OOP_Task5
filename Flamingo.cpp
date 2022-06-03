@@ -13,6 +13,11 @@ Flamingo::Flamingo(ifstream &in_file) : Birds(in_file) {
     Flamingo::loadAdditionBin(in_file);
 }
 
+Flamingo::Flamingo(const Flamingo& other) : Birds(other.GetColor(), other.m_childCount, other.m_avgLifetime, other.m_incubationTime),
+                                            m_avgHeight(other.m_avgHeight){
+
+}
+
 Flamingo::~Flamingo() {
 
 }

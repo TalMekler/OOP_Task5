@@ -9,6 +9,7 @@ public:
     Flamingo(const char *color, int childs, float avgLifetime, float incubation,
              float avgHeight);//init the Flamingo with a given attributes
     Flamingo(ifstream &in_file);//init the Flamingo from a binary file
+    Flamingo(const Flamingo& other);
     virtual ~Flamingo();
 
 public:

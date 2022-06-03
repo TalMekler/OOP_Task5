@@ -9,6 +9,7 @@ public:
 	Horse();//set the default color to GRAY and other params to 0
 	Horse( const char* color, int childs, float avgLifetime, float preg, float milk, const char* type );//init the Horse with a given attributes
 	Horse( ifstream& in_file );//init the Horse from a binary file
+    Horse(const Horse& other);
 	virtual ~Horse();
 
 public:
