@@ -5,7 +5,7 @@ Mermaid::Mermaid() : MammalsFish(), m_firstName(nullptr), m_lastName(nullptr) {
 }
 
 Mermaid::Mermaid(const char *color, int childs, float avgLifetime, float preg, float milk, int fin, int gills,
-                 const char *firstName, const char *lastName) : MammalsFish(color, childs, avgLifetime, preg, milk, fin, gills), m_lastName(
+                 const char *firstName, const char *lastName) :Animal(color, childs, avgLifetime) ,MammalsFish(color, childs, avgLifetime, preg, milk, fin, gills), m_lastName(
         nullptr),m_firstName(nullptr) {
     setFirstName(firstName);
     setLastName(lastName);

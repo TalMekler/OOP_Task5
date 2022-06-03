@@ -7,7 +7,7 @@ Flamingo::Flamingo(const char *color, int childs, float avgLifetime, float incub
                                                                                                                 avgLifetime,
                                                                                                                 incubation),
                                                                                                           m_avgHeight(
-                                                                                                                  avgLifetime) {};
+                                                                                                                  avgHeight) {};
 
 Flamingo::Flamingo(ifstream &in_file) : Birds(in_file) {
     Flamingo::loadAdditionBin(in_file);

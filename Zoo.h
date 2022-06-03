@@ -12,6 +12,7 @@ class Zoo
 public:
 	Zoo();//default c'tor  - all to 0 or null
 	Zoo( const char* name, const char* address, float ticket, const char* open, const char* close );//c'tor with data - init class
+    Zoo(const Zoo& z);
 	Zoo( ifstream& in_file );//c'tor that gets a binary file and loads the data of the zoo from the file
 	virtual ~Zoo();//d'tor
 
@@ -56,13 +57,6 @@ private:
 	Animal**	m_animals;
 };
 
-ofstream& operator<<( ofstream& out, const Zoo& z ) {
-    z.Save(out);
-    return out;
-}
-ifstream& operator >> ( ifstream& in, Zoo& z ) {
-    z.Load(in);
-    return in;
-}
+
 
 #endif // ifndef ZOO_H

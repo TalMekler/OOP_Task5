@@ -2,7 +2,7 @@
 
 Horse::Horse() : Mammals(), m_type(nullptr) {};
 
-Horse::Horse(const char *color, int childs, float avgLifetime, float preg, float milk, const char *type) : Mammals(
+Horse::Horse(const char *color, int childs, float avgLifetime, float preg, float milk, const char *type) : Animal(color, childs, avgLifetime) ,Mammals(
         color, childs, avgLifetime, preg, milk) {
     m_type = strdup(type);
 }
@@ -51,8 +51,9 @@ void Horse::saveAdditionBin(ofstream &out_file) const {
 
 void Horse::loadAddition(ifstream &in_file) {
     char buff[200];
-    in_file>>buff;
-    setType(m_type);
+    in_file.getline(buff, 200);
+    in_file.getline(buff, 200);
+    setType(buff);
 }
 
 void Horse::loadAdditionBin(ifstream &in_file) {
@@ -64,6 +65,6 @@ void Horse::loadAdditionBin(ifstream &in_file) {
 }
 
 void Horse::setType(const char *type) {
-    delete[] m_type;
+//    delete[] m_type;
     m_type = strdup(type);
 }

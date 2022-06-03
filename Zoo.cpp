@@ -14,33 +14,20 @@ Zoo::Zoo(const char *name, const char *address, float ticket, const char *open, 
     m_animals = nullptr;
 }
 
-Zoo::Zoo(ifstream &in_file) {
-    Zoo::LoadBin(in_file);
+Zoo::Zoo(const Zoo &z) {
+    m_name = strdup(z.GetName());
+    m_address = strdup(z.GetAddress());
+    m_ticketPrice = z.GetTicketPrice();
+    m_openHours = strdup(z.GetOpenHour());
+    m_closeHours = strdup(z.GetCloseHour());
+    m_numOfAnimals = 0;
+    for (int i = 0; i < z.GetNumOfAnimals(); ++i) {
+        AddAnimal(z.m_animals[i]);
+    }
+}
 
-//    int len;
-//    // m_name
-//    in_file.read((char *) &len, sizeof(len));
-//    m_name = new char[len + 1];
-//    in_file.read(m_name, len);
-//    // m_address
-//    in_file.read((char *) &len, sizeof(len));
-//    m_address = new char[len + 1];
-//    in_file.read(m_address, len);
-//    // m_ticketPrice
-//    in_file.read((char *) &m_ticketPrice, sizeof(m_ticketPrice));
-//    // m_openHours
-//    in_file.read((char *) &len, sizeof(len));
-//    m_openHours = new char[len + 1];
-//    in_file.read(m_openHours, len);
-//    // m_closeHours
-//    in_file.read((char *) &len, sizeof(len));
-//    m_closeHours = new char[len + 1];
-//    in_file.read(m_closeHours, len);
-//    // m_numOfAnimals
-//    in_file.read((char *) &m_numOfAnimals, sizeof(m_numOfAnimals));
-//    // m_animals
-//    in_file.read((char *) &len, sizeof(len));
-//    m_animals = new Animal *[len];
+Zoo::Zoo(ifstream &in_file) : m_numOfAnimals(0) {
+    Zoo::LoadBin(in_file);
 }
 
 Zoo::~Zoo() {
@@ -48,9 +35,9 @@ Zoo::~Zoo() {
     delete[] m_address;
     delete[] m_openHours;
     delete[] m_closeHours;
-    for (int i = 0; i < m_numOfAnimals; ++i) {
-        delete m_animals[i];
-    }
+//    for (int i = 0; i < m_numOfAnimals; ++i) {
+//        delete m_animals[i];
+//    }
     delete[] m_animals;
 }
 
@@ -87,25 +74,25 @@ void Zoo::AddAnimal(Animal *an) {
 }
 
 Zoo &Zoo::operator+(Animal *an) {
-    Animal** tmp = new Animal*[m_numOfAnimals + 1];
+    Animal **tmp = new Animal *[m_numOfAnimals + 1];
     for (int i = 0; i < m_numOfAnimals; ++i) {
         tmp[i] = m_animals[i];
     }
     tmp[m_numOfAnimals] = an;
     m_animals = tmp;
     tmp = nullptr;
+    m_numOfAnimals++;
     return *this;
 }
 
 Zoo Zoo::operator+(const Zoo &other) const {
-    Zoo newZ(other.GetName(), other.GetAddress(), other.GetTicketPrice(), other.GetOpenHour(), other.GetCloseHour());
-    newZ.m_numOfAnimals = 0;
+    Zoo newZ(*this); // Using copy CTOR
     //Copy m_animals -> deep copy
-    for (int i = 0; i < m_numOfAnimals; ++i) {
-        newZ.AddAnimal(m_animals[i]);
+    for (int i = 0; i < other.m_numOfAnimals; ++i) {
+        newZ.AddAnimal(other.m_animals[i]);
     }
-    newZ.m_numOfAnimals = other.GetNumOfAnimals();
-    return Zoo();
+//    newZ.m_numOfAnimals = other.GetNumOfAnimals();
+    return newZ;
 }
 
 void Zoo::Save(ofstream &ofs) const {
@@ -114,7 +101,7 @@ void Zoo::Save(ofstream &ofs) const {
     ofs << m_ticketPrice << endl;
     ofs << m_openHours << endl;
     ofs << m_closeHours << endl;
-    ofs << m_numOfAnimals << endl;
+    ofs << m_numOfAnimals; ///TODO: changed here
     // Save each animal and his type
     for (int i = 0; i < m_numOfAnimals; ++i) {
         m_animals[i]->Save(ofs);
@@ -123,14 +110,16 @@ void Zoo::Save(ofstream &ofs) const {
 
 void Zoo::Load(ifstream &ifs) {
     char buff[200];
-    ifs >> buff;
+    ifs.getline(buff, 200);
     m_name = strdup((buff));
-    ifs >> buff;
+
+    ifs.getline(buff, 200);
     m_address = strdup((buff));
     ifs >> m_ticketPrice;
-    ifs >> buff;
+    ifs.read(buff, 1);
+    ifs.getline(buff, 200);
     m_openHours = strdup(buff);
-    ifs >> buff;
+    ifs.getline(buff, 200);
     m_closeHours = strdup(buff);
     ifs >> m_numOfAnimals;
     char *type;
@@ -149,17 +138,17 @@ void Zoo::SaveBin(ofstream &ofs) const {
     ofs.write(m_name, len);
     // save address : char*
     len = strlen(m_address);
-    ofs.write((char *) &len, len);
+    ofs.write((char *) &len, sizeof(len));
     ofs.write(m_address, len);
     // save ticketPrice
     ofs.write((char *) &m_ticketPrice, sizeof(m_ticketPrice));
     // save open hours : char*
     len = strlen(m_openHours);
-    ofs.write((char *) &len, len);
+    ofs.write((char *) &len, sizeof(len));
     ofs.write(m_openHours, len);
     // save close hours : char*
     len = strlen(m_closeHours);
-    ofs.write((char *) &len, len);
+    ofs.write((char *) &len, sizeof(len));
     ofs.write(m_closeHours, len);
     // save num of animals : int
     ofs.write((char *) &m_numOfAnimals, sizeof(m_numOfAnimals));
@@ -179,16 +168,19 @@ void Zoo::LoadBin(ifstream &ifs) {
     // load address : char*
     ifs.read((char *) &len, sizeof(len));
     ifs.read(buffer, len);
+    buffer[len] = '\0';
     m_address = strdup(buffer);
     // load ticket price : float
     ifs.read((char *) &m_ticketPrice, sizeof(m_ticketPrice));
     // load open hours : char*
     ifs.read((char *) &len, sizeof(len));
     ifs.read(buffer, len);
+    buffer[len] = '\0';
     m_openHours = strdup(buffer);
     // load close hours : char*
     ifs.read((char *) &len, sizeof(len));
     ifs.read(buffer, len);
+    buffer[len] = '\0';
     m_closeHours = strdup(buffer);
     // load num of animals : int
     ifs.read((char *) &m_numOfAnimals, sizeof(m_numOfAnimals));
@@ -202,6 +194,8 @@ void Zoo::LoadBin(ifstream &ifs) {
 
 char *Zoo::loadTypeTxt(ifstream &ifs) {
     char *type = new char[3];
+    ///TODO: CMD here
+//    ifs.read(type, 1); ///
     ifs.read(type, 2);
     return type;
 }
@@ -210,19 +204,19 @@ Animal *Zoo::makeObject(ifstream &ifs) {
     char *type;
     type = loadTypeTxt(ifs);
 
-    if (strcmp(type, "Ho")) {
+    if (strcmp(type, "Ho") == 0) {
         Horse *h = new Horse();
         h->Load(ifs);
         delete[] type;
         return h;
     }
-    if (strcmp(type, "Me")) {
+    if (strcmp(type, "Me") == 0) {
         Mermaid *m = new Mermaid();
         m->Load(ifs);
         delete[] type;
         return m;
     }
-    if (strcmp(type, "Go")) {
+    if (strcmp(type, "Go") == 0) {
         GoldFish *g = new GoldFish();
         g->Load(ifs);
         delete[] type;
@@ -240,17 +234,17 @@ Animal *Zoo::makeObjectBin(ifstream &ifs) {
     char *type;
     type = loadTypeTxt(ifs);
 
-    if (strcmp(type, "Ho")) {
+    if (strcmp(type, "Ho") == 0) {
         Horse *h = new Horse(ifs);
         delete[] type;
         return h;
     }
-    if (strcmp(type, "Me")) {
+    if (strcmp(type, "Me") == 0) {
         Mermaid *m = new Mermaid(ifs);
         delete[] type;
         return m;
     }
-    if (strcmp(type, "Go")) {
+    if (strcmp(type, "Go") == 0) {
         GoldFish *g = new GoldFish(ifs);
         delete[] type;
         return g;
@@ -282,6 +276,16 @@ Zoo &Zoo::operator+=(Animal *an) {
 
     m_animals = tmp;
     tmp = nullptr;
+    m_numOfAnimals++;
     return *this;
 }
 
+ofstream &operator<<(ofstream &out, const Zoo &z) {
+    z.Save(out);
+    return out;
+}
+
+ifstream &operator>>(ifstream &in, Zoo &z) {
+    z.Load(in);
+    return in;
+}
