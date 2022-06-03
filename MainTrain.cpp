@@ -1,4 +1,8 @@
 #include "Zoo.h"
+#include "Mermaid.h"
+#include "GoldFish.h"
+#include "Horse.h"
+#include "Flamingo.h"
 
 //Train
 int main()
@@ -111,7 +115,7 @@ int main()
 		cout << "Zoo name is wrong after merging 2 zoos (-10)" << endl;
 
 	if( 4 != z3.GetNumOfAnimals() )
-		cout << "Zoo number of animals is wrong after merging 2 zoos (-10)" << endl;
+		cout << "Zoo number of animals is wrong after merging 2 zoos (-10)..." << endl;
 
 	Flamingo* f2 = dynamic_cast<Flamingo*>( z3.GetAnimals()[0] );
 	if( NULL == f2 )
