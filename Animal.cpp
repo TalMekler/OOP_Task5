@@ -54,7 +54,8 @@ void Animal::Load(ifstream &in_file) {
 }
 
 void Animal::SaveBin(ofstream &out_file) const {
-    saveType(out_file);
+//    saveType(out_file);
+    out_file.write(typeid(*this).name() +1, 2);
     int len = strlen(m_color);
     out_file.write((char *) &len, sizeof(len));
     out_file.write(m_color, len);
@@ -67,13 +68,10 @@ void Animal::LoadBin(ifstream &in_file) {
     char buff[200];
     in_file.read((char *) &len, sizeof(len));
     in_file.read(buff, len);
+    buff[len] = '\0';
     setColor(buff);
     in_file.read((char *) &m_childCount, sizeof(m_childCount));
     in_file.read((char *) &m_avgLifetime, sizeof(m_avgLifetime));
-}
-
-void Animal::saveType(ofstream &out_file)const {
-    out_file.write((char *) typeid(*this).name() + 1, 2);
 }
 
 Animal& Animal::operator=(Animal &animal) {
@@ -87,3 +85,7 @@ Animal& Animal::operator=(Animal &animal) {
     return *this;
 }
 
+//void Animal::saveType(ofstream &out_file)const {
+//    cout<<typeid(this).name()+1<<endl;
+//    out_file.write((char *) typeid(*this).name() + 1, 2);
+//}

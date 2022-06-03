@@ -61,3 +61,7 @@ void Flamingo::loadAddition(ifstream &in_file) {
 void Flamingo::loadAdditionBin(ifstream &in_file) {
     in_file.read((char *) &m_avgHeight, sizeof(m_avgHeight));
 }
+
+void Flamingo::saveType(ofstream &out_file) const {
+    out_file.write((char*)"Fl", 2);
+}

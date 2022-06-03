@@ -11,7 +11,7 @@ Mermaid::Mermaid(const char *color, int childs, float avgLifetime, float preg, f
     setLastName(lastName);
 }
 
-Mermaid::Mermaid(ifstream &in_file) : MammalsFish(in_file) {
+Mermaid::Mermaid(ifstream &in_file) :Animal(in_file), MammalsFish(in_file) {
     Mermaid::loadAdditionBin(in_file);
 }
 
@@ -95,4 +95,9 @@ void Mermaid::loadAdditionBin(ifstream &in_file) {
     in_file.read((char*)&len, sizeof (len));
     in_file.read(buff, len);
     setLastName(buff);
+}
+
+void Mermaid::saveType(ofstream &out_file) const {
+//    cout<<"Mermaid saveType: "<<typeid(this).name();
+    out_file.write((char*)"Me", 2);
 }

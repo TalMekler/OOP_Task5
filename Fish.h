@@ -23,6 +23,8 @@ public:
     virtual void saveAdditionBin(ofstream &out_file) const;
     virtual void loadAddition(ifstream &in_file);
     virtual void loadAdditionBin(ifstream &in_file);
+
+    virtual void saveType(ofstream &out_file) const = 0;
 protected:
 	int m_finCount;
 	int m_gillsCount;

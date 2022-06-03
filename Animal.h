@@ -42,7 +42,7 @@ public:
 
     virtual void loadAdditionBin(ifstream &in_file) = 0;
 
-    void saveType(ofstream &out_file) const;
+    virtual void saveType(ofstream &out_file) const = 0;
 
     // OPERATORS
     Animal &operator=(Animal &animal);

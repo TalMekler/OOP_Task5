@@ -52,6 +52,9 @@ int main()
 
 	z3.SaveBin( OutFile3 );
 	OutFile3.close();
+    ofstream OutFileCheck("outputCheck.txt" );
+    OutFileCheck << z3;
+    OutFileCheck.close();
 
 	//section 4 - load the zoo from the saved txt file
 	Zoo z4;

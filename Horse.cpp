@@ -14,7 +14,7 @@ Horse::Horse(const char *color, int childs, float avgLifetime, float preg, float
     m_type = strdup(type);
 }
 
-Horse::Horse(ifstream &in_file) : Mammals(in_file) {
+Horse::Horse(ifstream &in_file) :Animal(in_file) ,Mammals(in_file) {
     Horse::loadAdditionBin(in_file);
 }
 
@@ -80,4 +80,9 @@ void Horse::loadAdditionBin(ifstream &in_file) {
 void Horse::setType(const char *type) {
 //    delete[] m_type;
     m_type = strdup(type);
+}
+
+void Horse::saveType(ofstream &out_file) const {
+//    cout<<"Horse saveType: "<<typeid(this).name();
+    out_file.write((char*)"Ho", 2);
 }

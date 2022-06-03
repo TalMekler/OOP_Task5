@@ -67,3 +67,8 @@ void GoldFish::loadAdditionBin(ifstream &in_file) {
     in_file.read((char *) &m_avgWeight, sizeof(m_avgWeight));
     in_file.read((char *) &m_avgLength, sizeof(m_avgLength));
 }
+
+void GoldFish::saveType(ofstream &out_file) const {
+//    cout<<"GoldFish saveType: "<<typeid(this).name();
+    out_file.write((char*)"Go", 2);
+}

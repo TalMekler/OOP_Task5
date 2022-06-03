@@ -20,6 +20,7 @@ public:
     virtual void saveAdditionBin(ofstream &out_file) const = 0;
     virtual void loadAddition(ifstream &in_file) = 0;
     virtual void loadAdditionBin(ifstream &in_file) = 0;
+    virtual void saveType(ofstream &out_file) const = 0;
 };
 
 #endif // ifndef
