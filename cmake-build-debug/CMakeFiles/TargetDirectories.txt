@@ -1,3 +1,3 @@
-/Users/talmekler/Desktop/assignment/cmake-build-debug/CMakeFiles/assignment.dir
-/Users/talmekler/Desktop/assignment/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/talmekler/Desktop/assignment/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/CMakeFiles/assignment.dir
+/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/CMakeFiles/rebuild_cache.dir

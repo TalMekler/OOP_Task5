@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="assignment"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assignment">
+				<Option output="/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/assignment" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/talmekler/Desktop/OOP_Task5/."/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 assignment"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="assignment/fast">
+				<Option output="/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/assignment" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/talmekler/Desktop/OOP_Task5/."/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 assignment/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Animal.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Animal.h">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Birds.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Birds.h">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Fish.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Fish.h">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Flamingo.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Flamingo.h">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/GoldFish.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/GoldFish.h">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Horse.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Horse.h">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/MainTrain.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Mammals.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Mammals.h">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/MammalsFish.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/MammalsFish.h">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Mermaid.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Mermaid.h">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Zoo.cpp">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/Zoo.h">
+			<Option target="assignment"/>
+		</Unit>
+		<Unit filename="/Users/talmekler/Desktop/OOP_Task5/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

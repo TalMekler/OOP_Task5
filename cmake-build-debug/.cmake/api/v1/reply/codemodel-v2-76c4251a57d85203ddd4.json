@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "assignment::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-assignment-Debug-3d3667bd323ed4a52adc.json",
+					"jsonFile" : "target-assignment-Debug-cbab088b87ffef13249d.json",
 					"name" : "assignment",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/talmekler/Desktop/assignment/cmake-build-debug",
-		"source" : "/Users/talmekler/Desktop/assignment"
+		"build" : "/Users/talmekler/Desktop/OOP_Task5/cmake-build-debug",
+		"source" : "/Users/talmekler/Desktop/OOP_Task5"
 	},
 	"version" : 
 	{
